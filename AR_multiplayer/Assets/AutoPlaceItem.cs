@@ -36,7 +36,8 @@ public class AutoPlaceItem : MonoBehaviour {
 
     public void GameCode(Vector3 NewPos){
         isPlaced = true;
-        GameObjectToPlace.transform.parent = null;
+        GameObjectToPlace.transform.localScale = new Vector3(1,1,1);
+        GameObjectToPlace.transform.SetParent(null);
         GameObjectToPlace.transform.position = Vector3.Lerp(GameObjectToPlace.transform.position, NewPos, Time.deltaTime * speed);
 
 
