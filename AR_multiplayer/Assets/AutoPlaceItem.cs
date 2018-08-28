@@ -49,7 +49,7 @@ public class AutoPlaceItem : MonoBehaviour {
     private void Start()
     {
         //sets main camera in position to see fake AR plane
-        Camera.main.transform.position = new Vector3(0, 8, -10);
+        Camera.main.transform.position = new Vector3(0, 16, -10);
     }
     void Update()
     {
