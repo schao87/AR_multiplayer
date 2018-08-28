@@ -41,7 +41,7 @@ public class AutoPlaceItem : MonoBehaviour {
         GameObjectToPlace.transform.position = Vector3.Lerp(GameObjectToPlace.transform.position, NewPos, Time.deltaTime * speed);
 
 
-        if (!GameObjectToPlace.active){
+        if (!GameObjectToPlace.activeSelf){
             GameObjectToPlace.SetActive(true);
         }
     }
