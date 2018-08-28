@@ -11,6 +11,7 @@ public class NetworkManagerScript : MonoBehaviour {
     public Transform SpawnPoint2;
     public Transform SpawnPoint3;
     public Transform SpawnPoint4;
+    public GameObject GamePlane;
     // Use this for initialization
     void Start () {
         PhotonNetwork.ConnectUsingSettings("v01");
@@ -42,11 +43,25 @@ public class NetworkManagerScript : MonoBehaviour {
     }
 
     void OnJoinedRoom(){
-        StartCoroutine(SpawnMyPlayer());
+
+        if(PhotonNetwork.playerList.Length == 1){
+            StartCoroutine(SpawnMyPlayer());
+        }else{
+            StartCoroutine(SpawnMyPlayer2());
+        }
+
     }
 
     IEnumerator SpawnMyPlayer(){
         yield return new WaitForSeconds(1);
         GameObject MyPlayer = PhotonNetwork.Instantiate("Tank", SpawnPoint1.position, Quaternion.identity, 0) as GameObject;
+        MyPlayer.transform.parent = GamePlane.transform;
+    }
+
+    IEnumerator SpawnMyPlayer2()
+    {
+        yield return new WaitForSeconds(1);
+        GameObject MyPlayer = PhotonNetwork.Instantiate("Tank", SpawnPoint1.position, Quaternion.identity, 0) as GameObject;
+        MyPlayer.transform.parent = GamePlane.transform;
     }
 }

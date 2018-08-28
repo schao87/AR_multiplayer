@@ -46,11 +46,16 @@ public class AutoPlaceItem : MonoBehaviour {
         }
     }
 
-
+    private void Start()
+    {
+        //sets main camera in position to see fake AR plane
+        Camera.main.transform.position = new Vector3(0, 8, -10);
+    }
     void Update()
     {
         if(Application.isEditor){
             //raycast casting to the center of the screen
+
             Vector3 camRay = new Vector3(Camera.main.pixelWidth * .5f, Camera.main.pixelHeight * .5f, 0f);
             Ray ray = Camera.main.ScreenPointToRay(camRay);
             RaycastHit hit;
