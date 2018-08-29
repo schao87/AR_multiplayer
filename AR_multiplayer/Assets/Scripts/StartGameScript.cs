@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class StartGameScript : MonoBehaviour {
     public Button StartGameButton;
     public GameObject NetworkManagerObject;
+
 	// Use this for initialization
 	void Start () {
         StartGameButton.onClick.AddListener(StartGameFunc);

@@ -32,6 +32,7 @@ public class AutoPlaceItem : MonoBehaviour {
                 TestingGround[i].SetActive(false);
             }
         }
+
     }
 
     public void GameCode(Vector3 NewPos){
@@ -73,6 +74,7 @@ public class AutoPlaceItem : MonoBehaviour {
                 GameCode(hitPose.position);
                 GameObjectToPlace.transform.rotation = hitPose.rotation;
             }
+
         }
 
         //places gameobject back into camera when camera is not facing a plane
