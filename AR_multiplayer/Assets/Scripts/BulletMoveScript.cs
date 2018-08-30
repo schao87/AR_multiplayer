@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class BulletMoveScript : MonoBehaviour {
     public int speed;
-	// Use this for initialization
-	void Start () {
+
+    public float Lifetime = 2f;
+
+    private void OnEnable()
+    {
+        CancelInvoke();
+        Invoke("Die", Lifetime);
+    }
+
+    void Die(){
+        CancelInvoke();
+        gameObject.SetActive(false);
+    }
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

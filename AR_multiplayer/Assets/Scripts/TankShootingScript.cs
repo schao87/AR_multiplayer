@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+
 
 public class TankShootingScript : MonoBehaviour
 {
 
     PhotonView view;
-
-    public int force = 30;
-    public GameObject AmmoPrefab = null;
+    private bool ShootBool = true;
+    //public int force = 30;
+    //public GameObject AmmoPrefab = null;
 
     // Use this for initialization
     void Start()
@@ -25,14 +27,19 @@ public class TankShootingScript : MonoBehaviour
         // shootBullet is the method
         // photonTargets.all sends it to all clients
 
-        if (view.isMine && Input.GetKeyDown(KeyCode.Space))
+        if (view.isMine && Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButton("Fire") && ShootBool)
         {
+            ShootBool = false;
+            StartCoroutine(SetShootBool());
             //view.RPC("ShootBullet", PhotonTargets.All, transform.Find("ShootPosition").transform.position, transform.Find("ShootPosition").transform.rotation);
             view.RPC("ShootBullet", PhotonTargets.All);
         }
 
+    }
 
-
+    IEnumerator SetShootBool(){
+        yield return new WaitForSeconds(1f);
+        ShootBool = true;
     }
     //[PunRPC] void ShootBullet(Vector3 Pos, Quaternion quaat){
     //    GameObject GO = Instantiate(Bullet, Pos, quaat) as GameObject;
@@ -41,7 +48,8 @@ public class TankShootingScript : MonoBehaviour
 
     [PunRPC]void ShootBullet()
     {
-        Instantiate(AmmoPrefab, transform.position, transform.rotation);
+        //Instantiate(AmmoPrefab, transform.position, transform.rotation);
+        AmmoManager.SpawnAmmo(transform.position, transform.rotation);
       
     }
 }
