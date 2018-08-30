@@ -27,7 +27,7 @@ public class TankShootingScript : MonoBehaviour
         // shootBullet is the method
         // photonTargets.all sends it to all clients
 
-        if (view.isMine && Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButton("Fire") && ShootBool)
+        if ((view.isMine && (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButton("Fire"))) && ShootBool)
         {
             ShootBool = false;
             StartCoroutine(SetShootBool());
