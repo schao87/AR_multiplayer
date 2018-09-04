@@ -12,6 +12,9 @@ public class NetworkManagerScript : MonoBehaviour {
     public Transform SpawnPoint3;
     public Transform SpawnPoint4;
     public GameObject GamePlane;
+    public Button MultiplayerBtn;
+    public bool gameStarted = false;
+    public GameObject Panel;
     // Use this for initialization
     void Start () {
         PhotonNetwork.ConnectUsingSettings("v01");
@@ -31,11 +34,12 @@ public class NetworkManagerScript : MonoBehaviour {
     {
         Debug.Log("Connected with Master");
         PhotonNetwork.JoinLobby();
+
     }
 
     void OnJoinedLobby(){
         Debug.Log("Connected with Lobby");
-
+     
         RoomOptions MyRoomOptions = new RoomOptions();
         MyRoomOptions.MaxPlayers = (byte)MaxJoinedPlayers;
 
@@ -50,6 +54,8 @@ public class NetworkManagerScript : MonoBehaviour {
             StartCoroutine(SpawnMyPlayer2());
         }
 
+        gameStarted = true;
+        Panel.gameObject.SetActive(false);
     }
 
     IEnumerator SpawnMyPlayer(){

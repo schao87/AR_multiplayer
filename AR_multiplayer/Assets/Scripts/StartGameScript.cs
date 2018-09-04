@@ -4,16 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StartGameScript : MonoBehaviour {
-    public Button StartGameButton;
+    public Button MultiplayerButton;
     public GameObject NetworkManagerObject;
+    public NetworkManagerScript NMS;
+    //public GameObject Panel;
+    // Use this for initialization
+    void Start () {
 
-	// Use this for initialization
-	void Start () {
-        StartGameButton.onClick.AddListener(StartGameFunc);
+        MultiplayerButton.onClick.AddListener(StartGameFunc);
+        MultiplayerButton.gameObject.SetActive(false);
 	}
-	
+
+    private void Update(){
+        if (NMS.gameStarted == true){
+            MultiplayerButton.gameObject.SetActive(false);
+        }
+    }
     void StartGameFunc(){
-        StartGameButton.gameObject.SetActive(false);
+
+        //MultiplayerButton.gameObject.SetActive(false);
+       
         NetworkManagerObject.SetActive(true);
+        Debug.Log("btn pressed");
     }
 }

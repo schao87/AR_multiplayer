@@ -11,7 +11,8 @@ public class AutoPlaceItem : MonoBehaviour {
     public GameObject[] TestingGround;
     public float speed = .5f;
     public bool isPlaced = false;
-
+    public GameObject MultiplayerBtn;
+    public NetworkManagerScript NMS;
     ARSessionOrigin m_SessionOrigin;
 
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
@@ -41,6 +42,10 @@ public class AutoPlaceItem : MonoBehaviour {
         GameObjectToPlace.transform.SetParent(null);
         GameObjectToPlace.transform.position = Vector3.Lerp(GameObjectToPlace.transform.position, NewPos, Time.deltaTime * speed);
 
+        if(NMS.gameStarted == false){
+            MultiplayerBtn.SetActive(true);
+        }
+
 
         if (!GameObjectToPlace.activeSelf){
             GameObjectToPlace.SetActive(true);
@@ -49,8 +54,9 @@ public class AutoPlaceItem : MonoBehaviour {
 
     private void Start()
     {
+       
         //sets main camera in position to see fake AR plane
-        Camera.main.transform.position = new Vector3(0, 16, -10);
+        //Camera.main.transform.position = new Vector3(0, 16, -10);
     }
     void Update()
     {
@@ -78,11 +84,14 @@ public class AutoPlaceItem : MonoBehaviour {
         }
 
         //places gameobject back into camera when camera is not facing a plane
-        if(isPlaced == false){
+        if(isPlaced == false ){
             GameObjectToPlace.transform.parent = Camera.main.transform;
             GameObjectToPlace.transform.localPosition = Vector3.zero;
+            MultiplayerBtn.SetActive(false);
         }
 
+
+ 
         isPlaced = false;
 
     }
