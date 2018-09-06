@@ -30,7 +30,7 @@ public class AmmoManager : MonoBehaviour {
             AmmoArray[i] = Instantiate(AmmoPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             //make ammo child of ammo array
             Transform ObjTransform = AmmoArray[i].GetComponent<Transform>();
-            ObjTransform.parent = transform;
+            ObjTransform.SetParent(transform, false);
 
             AmmoQueue.Enqueue(ObjTransform);
             AmmoArray[i].SetActive(false);
