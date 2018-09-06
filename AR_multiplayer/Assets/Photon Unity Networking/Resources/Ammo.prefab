@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  Plane: {fileID: 1032039498245452, guid: 8a3345a140b0849fe93d441d31abdfe4, type: 2}
 --- !u!114 &114521785744032044
 MonoBehaviour:
   m_ObjectHideFlags: 1

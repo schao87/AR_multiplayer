@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletExplosionScript : MonoBehaviour {
     PhotonView view;
     public GameObject Explosion;
+    public GameObject Plane;
 	// Use this for initialization
 	void Start () {
         view = GetComponent<PhotonView>();
@@ -18,6 +19,7 @@ public class BulletExplosionScript : MonoBehaviour {
         if (view.isMine){
            
             GameObject explosion = PhotonNetwork.Instantiate("Explosion", transform.position, Quaternion.identity, 0) as GameObject;
+            //Explosion.transform.SetParent(Plane.transform);
         }
     }
 }
