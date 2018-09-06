@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114076924891026178}
   m_Layer: 5
   m_Name: Ammo
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

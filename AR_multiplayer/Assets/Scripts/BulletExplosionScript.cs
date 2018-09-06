@@ -13,10 +13,10 @@ public class BulletExplosionScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(view.isMine){
-            //turn off collider once collided
-            GetComponent<MeshCollider>().enabled = false;
-            GetComponent<MeshRenderer>().enabled = false;
+        gameObject.SetActive(false);
+
+        if (view.isMine){
+           
             GameObject explosion = PhotonNetwork.Instantiate("Explosion", transform.position, Quaternion.identity, 0) as GameObject;
         }
     }

@@ -44,7 +44,7 @@ public class AmmoManager : MonoBehaviour {
         SpawnedAmmo.rotation = Rotation;
 
         AmmoManagerSingleton.AmmoQueue.Enqueue(SpawnedAmmo); //adds ammo object back to the end of queue
-
+    
         return SpawnedAmmo; //return reference to SpawnedAmmo transform in case any other function needs access to the ammo object that has been generated
     }
 }
