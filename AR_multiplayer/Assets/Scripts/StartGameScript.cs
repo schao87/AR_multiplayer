@@ -7,11 +7,17 @@ public class StartGameScript : MonoBehaviour {
     public Button MultiplayerButton;
     public GameObject NetworkManagerObject;
     public NetworkManagerScript NMS;
+    public GameObject ResetPositionBtn;
     //public GameObject Panel;
     // Use this for initialization
+
+
+    //THIS SCRIPT LOCATED IN CANVAS
     void Start () {
 
         MultiplayerButton.onClick.AddListener(StartGameFunc);
+
+        //hides muliplayer button on start
         MultiplayerButton.gameObject.SetActive(false);
 	}
 
@@ -22,7 +28,7 @@ public class StartGameScript : MonoBehaviour {
     }
     void StartGameFunc(){
 
-        //MultiplayerButton.gameObject.SetActive(false);
+        ResetPositionBtn.SetActive(false);
        
         NetworkManagerObject.SetActive(true);
         Debug.Log("btn pressed");

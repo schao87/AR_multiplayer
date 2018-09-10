@@ -14,6 +14,7 @@ public class AutoPlaceItem : MonoBehaviour {
     public GameObject MultiplayerBtn;
     public NetworkManagerScript NMS;
     ARSessionOrigin m_SessionOrigin;
+    public GameObject PlaceMapBtn;
 
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
@@ -43,7 +44,7 @@ public class AutoPlaceItem : MonoBehaviour {
         GameObjectToPlace.transform.position = Vector3.Lerp(GameObjectToPlace.transform.position, NewPos, Time.deltaTime * speed);
 
         if(NMS.gameStarted == false){
-            MultiplayerBtn.SetActive(true);
+            PlaceMapBtn.SetActive(true);
         }
 
 
@@ -72,6 +73,7 @@ public class AutoPlaceItem : MonoBehaviour {
                 GameCode(hit.point);
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
                 GameObjectToPlace.transform.rotation = Quaternion.identity;
+                GameObjectToPlace.SetActive(true);
             }
         }else{
             //set up the real plane when running on ipad
@@ -79,6 +81,7 @@ public class AutoPlaceItem : MonoBehaviour {
                 Pose hitPose = s_Hits[0].pose;
                 GameCode(hitPose.position);
                 GameObjectToPlace.transform.rotation = hitPose.rotation;
+                GameObjectToPlace.SetActive(true);
             }
 
         }
@@ -87,6 +90,7 @@ public class AutoPlaceItem : MonoBehaviour {
         if(isPlaced == false ){
             GameObjectToPlace.transform.parent = Camera.main.transform;
             GameObjectToPlace.transform.localPosition = Vector3.zero;
+            GameObjectToPlace.SetActive(false);
             MultiplayerBtn.SetActive(false);
         }
 
