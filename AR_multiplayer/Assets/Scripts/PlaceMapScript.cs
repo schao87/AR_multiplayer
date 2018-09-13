@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Experimental.XR;
+using UnityEngine.SceneManagement;
 
 public class PlaceMapScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlaceMapScript : MonoBehaviour
     public GameObject PlaceMapBtn;
     public GameObject ResetMapBtn;
     public GameObject ARSessionOrigin;
+    public GameObject GameObjectToPlace;
     //public GameObject FeatheredPlane;
     // Use this for initialization
 
@@ -37,20 +39,25 @@ public class PlaceMapScript : MonoBehaviour
 
     public void OnClickResetMap()
     {
-        PlaceMapBtn.SetActive(true);
-        ResetMapBtn.SetActive(false);
-       
-        ARSessionOrigin.GetComponent<ARPlaneManager>().enabled = true;
-        ARSessionOrigin.GetComponent<AutoPlaceItem>().enabled = true;
-        ARSessionOrigin.GetComponent<ARPointCloudManager>().enabled = true;
+        //PlaceMapBtn.SetActive(true);
+        //ResetMapBtn.SetActive(false);
 
-        if (!Application.isEditor)
-        {
-            var FeatheredPlane = GameObject.FindGameObjectWithTag("FeatheredPlane");
-            var PointCloud = GameObject.FindGameObjectWithTag("PointCloud");
+        //ARSessionOrigin.GetComponent<ARPlaneManager>().enabled = true;
+        //ARSessionOrigin.GetComponent<AutoPlaceItem>().enabled = true;
+        //ARSessionOrigin.GetComponent<ARPointCloudManager>().enabled = true;
 
-            FeatheredPlane.SetActive(true);
-            PointCloud.SetActive(true);
-        }
+
+        //GameObjectToPlace.transform.parent = Camera.main.transform;
+        //GameObjectToPlace.transform.localPosition = Vector3.zero;
+
+        //if (!Application.isEditor)
+        //{
+        //    var FeatheredPlane = GameObject.FindGameObjectWithTag("FeatheredPlane");
+        //    var PointCloud = GameObject.FindGameObjectWithTag("PointCloud");
+
+        //    FeatheredPlane.SetActive(true);
+        //    PointCloud.SetActive(true);
+        //}
+        SceneManager.LoadScene("AR_Multiplayer");
     }
 }
